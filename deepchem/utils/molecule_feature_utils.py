@@ -274,6 +274,42 @@ def get_atom_hydrogen_bonding_one_hot(
         one_hot[1] = 1.0
   return one_hot
 
+def get_atom_normal(atom: RDKitAtom) -> List[float]:
+    """ get normal vector from atom geometry in molecule
+    Parameters
+    ---------
+    atom: rdkit.Chem.rdchem.Atom
+    RDKit atom object
+
+    Returns
+    -------
+    List[float]
+    A vector of 3D coordinates of the normal vector.
+    """
+    normal = [0.0, 0.0, 0.0]
+    for normal_tuple in mol_geom['N']
+        if normal_tuple[0] == atom_idx:
+            normal = normal_tuple[1]
+    return normal
+
+def get_atom_curvature(atom: RDKitAtom) -> List[float]:
+    """ get curvature from atom geometry in molecule
+    Parameters
+    ---------
+    atom: rdkit.Chem.rdchem.Atom
+    RDKit atom object
+
+    Returns
+    -------
+    List[float]
+    A vector of 3D coordinates of the normal vector.
+    """
+    curvature = [0.0]
+    for curv_tuple in mol_geom['tcurve']
+        if curv_tuple[0] == atom_idx:
+            curvature = curve_tuple[1]
+    return curvature
+
 
 def get_atom_is_in_aromatic_one_hot(atom: RDKitAtom) -> List[float]:
   """Get ans one-hot feature about whether an atom is in aromatic system or not.
