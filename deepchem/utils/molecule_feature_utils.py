@@ -274,7 +274,7 @@ def get_atom_hydrogen_bonding_one_hot(
         one_hot[1] = 1.0
   return one_hot
 
-def get_atom_normal(atom: RDKitAtom) -> List[float]:
+def get_atom_normal(atom: RDKitAtom, mol_geom: dict) -> List[float]:
     """ get normal vector from atom geometry in molecule
     Parameters
     ---------
@@ -293,7 +293,7 @@ def get_atom_normal(atom: RDKitAtom) -> List[float]:
             normal = normal_tuple[1]
     return normal
 
-def get_atom_curvature(atom: RDKitAtom) -> List[float]:
+def get_atom_curvature(atom: RDKitAtom, mol_geom: dict) -> List[float]:
     """ get curvature from atom geometry in molecule
     Parameters
     ---------
