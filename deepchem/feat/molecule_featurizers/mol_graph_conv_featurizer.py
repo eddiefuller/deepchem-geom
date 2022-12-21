@@ -66,9 +66,9 @@ def _construct_atom_feature(atom: RDKitAtom,
       total_num_Hs
   ])
   
-  if use_geom:
-    normal = get_atom_normal(atom,mol_geom)
-    atom_feat = np.concatenate([atom_feat,np.array(normal)])
+  
+  normal = get_atom_normal(atom,mol_geom)
+  atom_feat = np.concatenate([atom_feat,np.array(normal)])
 
   if use_chirality:
     chirality = get_atom_chirality_one_hot(atom)
