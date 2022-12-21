@@ -29,7 +29,8 @@ from deepchem.feat.molecule_featurizers.molcurvature import get_geom
 
 def _construct_atom_feature(atom: RDKitAtom, 
                             h_bond_infos: List[Tuple[int,str]],
-                            atom_geom: List[Tuple[int,array]],
+                            mol_geom: dict,                             #List[Tuple[int,list]],
+                            use_geom: bool,
                             use_chirality: bool,
                             use_partial_charge: bool) -> np.ndarray:
   """Construct an atom feature from a RDKit atom object.
@@ -66,7 +67,7 @@ def _construct_atom_feature(atom: RDKitAtom,
   ])
   
   if use_geom:
-    normal = get_atom_normal(atom)
+    normal = get_atom_normal(atom,mol_geom)
     atom_feat = np.concatenate([atom_feat,np.array(normal)])
 
   if use_chirality:
