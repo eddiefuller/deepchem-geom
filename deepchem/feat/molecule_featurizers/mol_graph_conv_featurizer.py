@@ -67,7 +67,10 @@ def _construct_atom_feature(atom: RDKitAtom,
   ])
   
   
-  normal = get_atom_normal(atom,mol_geom)
+  if use_geom:
+    normal = get_atom_normal(atom,mol_geom)
+  else:
+    normal = [0,0,0] 
   atom_feat = np.concatenate([atom_feat,np.array(normal)])
 
   if use_chirality:
