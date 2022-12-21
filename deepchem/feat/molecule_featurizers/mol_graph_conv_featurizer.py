@@ -213,8 +213,8 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     # construct atom (node) feature
     h_bond_infos = construct_hydrogen_bonding_info(datapoint)
     
-    if self.use_geom:
-      mol_geom = get_geom(datapoint,hydro=True)
+    #if self.use_geom:
+    mol_geom = get_geom(datapoint,hydro=True)
       
      
     atom_features = np.asarray(
