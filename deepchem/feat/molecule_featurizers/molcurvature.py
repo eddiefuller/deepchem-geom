@@ -22,8 +22,6 @@ def get_geom( mol,
     
     if mol.GetNumAtoms() > 1:
         
-        print("Computing atom curvatures and normals.")
-
         src=''
         kappa = []
         kappam = []
@@ -109,14 +107,14 @@ def get_geom( mol,
                                         (np.linalg.norm(tempdTpre)*np.linalg.norm(tempdTpost)) 
                                         )
                                     )
-                                
-                                print( 'Angle:', 
-                                      np.arccos( 
-                                          np.dot(tempdTpost,tempdTpre)/
-                                          ( np.linalg.norm(tempdTpre)*np.linalg.norm(tempdTpost) )
-                                          ) 
-                                      )
-                                #print('Tpre:',)
+                                if verb:
+                                  print( 'Angle:', 
+                                        np.arccos( 
+                                            np.dot(tempdTpost,tempdTpre)/
+                                            ( np.linalg.norm(tempdTpre)*np.linalg.norm(tempdTpost) )
+                                            ) 
+                                        )
+                                  #print('Tpre:',)
                                 #localIV.append( )
                 
                                 localk.append( np.linalg.norm(np.array(tempdTpost)-np.array(tempdTpre)))
