@@ -25,9 +25,11 @@ from deepchem.utils.molecule_feature_utils import get_atom_explicit_valence_one_
 from deepchem.utils.rdkit_utils import compute_all_pairs_shortest_path
 from deepchem.utils.rdkit_utils import compute_pairwise_ring_info
 
+from graphcurvature import get_geom
 
-def _construct_atom_feature(atom: RDKitAtom, h_bond_infos: List[Tuple[int,
-                                                                      str]],
+def _construct_atom_feature(atom: RDKitAtom, 
+                            h_bond_infos: List[Tuple[int,str]],
+                            atom_geom: 
                             use_chirality: bool,
                             use_partial_charge: bool) -> np.ndarray:
   """Construct an atom feature from a RDKit atom object.
@@ -203,9 +205,10 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
 
     # construct atom (node) feature
     h_bond_infos = construct_hydrogen_bonding_info(datapoint)
+    geom_str = get_geom(datapoint)
     atom_features = np.asarray(
         [
-            _construct_atom_feature(atom, h_bond_infos, self.use_chirality,
+            _construct_atom_feature(atom, h_bond_infos, geom_str, self.use_chirality,
                                     self.use_partial_charge)
             for atom in datapoint.GetAtoms()
         ],
