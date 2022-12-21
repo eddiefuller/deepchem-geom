@@ -29,7 +29,7 @@ from graphcurvature import get_geom
 
 def _construct_atom_feature(atom: RDKitAtom, 
                             h_bond_infos: List[Tuple[int,str]],
-                            atom_geom: 
+                            atom_geom: List[Tuple[int,array]],
                             use_chirality: bool,
                             use_partial_charge: bool) -> np.ndarray:
   """Construct an atom feature from a RDKit atom object.
@@ -64,6 +64,10 @@ def _construct_atom_feature(atom: RDKitAtom,
       atom_type, formal_charge, hybridization, acceptor_donor, aromatic, degree,
       total_num_Hs
   ])
+  
+  if use_geom:
+    normal = get_atom_normal(atom)
+    atom_feat = np.concatenate([atom_feat,np.array(normal)])
 
   if use_chirality:
     chirality = get_atom_chirality_one_hot(atom)
