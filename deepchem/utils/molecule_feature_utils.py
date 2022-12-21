@@ -287,7 +287,8 @@ def get_atom_normal(atom: RDKitAtom) -> List[float]:
     A vector of 3D coordinates of the normal vector.
     """
     normal = [0.0, 0.0, 0.0]
-    for normal_tuple in mol_geom['N']
+    normals = mol_geom['N']
+    for normal_tuple in normals
         if normal_tuple[0] == atom_idx:
             normal = normal_tuple[1]
     return normal
@@ -305,7 +306,8 @@ def get_atom_curvature(atom: RDKitAtom) -> List[float]:
     A vector of 3D coordinates of the normal vector.
     """
     curvature = [0.0]
-    for curv_tuple in mol_geom['tcurve']
+    curvatures = mol_geom['tcurve']
+    for curv_tuple in curvatures
         if curv_tuple[0] == atom_idx:
             curvature = curve_tuple[1]
     return curvature
