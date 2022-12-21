@@ -288,7 +288,7 @@ def get_atom_normal(atom: RDKitAtom) -> List[float]:
     """
     normal = [0.0, 0.0, 0.0]
     normals = mol_geom['N']
-    for normal_tuple in normals
+    for normal_tuple in normals:
         if normal_tuple[0] == atom_idx:
             normal = normal_tuple[1]
     return normal
@@ -307,7 +307,7 @@ def get_atom_curvature(atom: RDKitAtom) -> List[float]:
     """
     curvature = [0.0]
     curvatures = mol_geom['tcurve']
-    for curv_tuple in curvatures
+    for curv_tuple in curvatures:
         if curv_tuple[0] == atom_idx:
             curvature = curve_tuple[1]
     return curvature
