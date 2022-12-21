@@ -157,7 +157,8 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
   def __init__(self,
                use_edges: bool = False,
                use_chirality: bool = False,
-               use_partial_charge: bool = False):
+               use_partial_charge: bool = False,
+               use_geom: bool = False):
     """
     Parameters
     ----------
@@ -175,6 +176,7 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     self.use_edges = use_edges
     self.use_partial_charge = use_partial_charge
     self.use_chirality = use_chirality
+    self.use_geom = use_geom
 
   def _featurize(self, datapoint: RDKitMol, **kwargs) -> GraphData:
     """Calculate molecule graph features from RDKit mol object.
@@ -210,11 +212,15 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
 
     # construct atom (node) feature
     h_bond_infos = construct_hydrogen_bonding_info(datapoint)
-    mol_geom = get_geom(datapoint.AddHs())
+    
+    if self.use_geom:
+      mol_geom = get_geom(datapoint,hydro=True)
+      
+     
     atom_features = np.asarray(
         [
             _construct_atom_feature(atom, h_bond_infos, mol_geom, self.use_chirality,
-                                    self.use_partial_charge)
+                                    self.use_partial_charge,self.use_geom)
             for atom in datapoint.GetAtoms()
         ],
         dtype=float,
