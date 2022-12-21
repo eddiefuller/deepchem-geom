@@ -25,7 +25,7 @@ from deepchem.utils.molecule_feature_utils import get_atom_explicit_valence_one_
 from deepchem.utils.rdkit_utils import compute_all_pairs_shortest_path
 from deepchem.utils.rdkit_utils import compute_pairwise_ring_info
 
-from graphcurvature import get_geom
+from molcurvature import get_geom
 
 def _construct_atom_feature(atom: RDKitAtom, 
                             h_bond_infos: List[Tuple[int,str]],
