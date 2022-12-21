@@ -216,7 +216,7 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     if self.use_geom:
       mol_geom = get_geom(datapoint,hydro=True)
     else:
-      mol_geom = [] 
+      mol_geom = {}
       
      
     atom_features = np.asarray(
