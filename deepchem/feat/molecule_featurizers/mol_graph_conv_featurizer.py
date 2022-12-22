@@ -231,8 +231,8 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
      
     atom_features = np.asarray(
         [
-            _construct_atom_feature(atom, h_bond_infos, mol_geom, self.use_chirality,
-                                    self.use_partial_charge,self.use_geom)
+            _construct_atom_feature(atom, h_bond_infos, use_geom, mol_geom, self.use_chirality,
+                                    self.use_partial_charge)
             for atom in datapoint.GetAtoms()
         ],
         dtype=float,
