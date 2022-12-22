@@ -22,6 +22,7 @@ from deepchem.utils.molecule_feature_utils import get_bond_stereo_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_formal_charge_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_implicit_valence_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_explicit_valence_one_hot
+from deepchem.utils.molecule_feature_utils import get_atom_normal
 from deepchem.utils.rdkit_utils import compute_all_pairs_shortest_path
 from deepchem.utils.rdkit_utils import compute_pairwise_ring_info
 
