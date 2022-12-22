@@ -30,7 +30,7 @@ from deepchem.feat.molecule_featurizers.molcurvature import get_geom
 def _construct_atom_feature(atom: RDKitAtom, 
                             h_bond_infos: List[Tuple[int,str]],
                             mol_geom: dict,                             #List[Tuple[int,list]],
-                            use_geom: bool,
+                            #use_geom: bool,
                             use_chirality: bool,
                             use_partial_charge: bool) -> np.ndarray:
   """Construct an atom feature from a RDKit atom object.
@@ -160,8 +160,8 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
   def __init__(self,
                use_edges: bool = False,
                use_chirality: bool = False,
-               use_partial_charge: bool = False,
-               use_geom: bool = False):
+               use_partial_charge: bool = False
+               ):
     """
     Parameters
     ----------
