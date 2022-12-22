@@ -179,7 +179,6 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     self.use_edges = use_edges
     self.use_partial_charge = use_partial_charge
     self.use_chirality = use_chirality
-    self.use_geom = True
     
     use_geom = True
     
