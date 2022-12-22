@@ -69,9 +69,10 @@ def _construct_atom_feature(atom: RDKitAtom,
   
   if use_geom:
     normal = get_atom_normal(atom,mol_geom)
+    atom_feat = np.concatenate([atom_feat,np.array(normal)])
   else:
     normal = [0,0,0] 
-  atom_feat = np.concatenate([atom_feat,np.array(normal)])
+    atom_feat = np.concatenate([atom_feat,np.array(normal)])
 
   if use_chirality:
     chirality = get_atom_chirality_one_hot(atom)
@@ -160,8 +161,7 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
   def __init__(self,
                use_edges: bool = False,
                use_chirality: bool = False,
-               use_partial_charge: bool = False
-               ):
+               use_partial_charge: bool = False):
     """
     Parameters
     ----------
@@ -219,7 +219,7 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     # construct atom (node) feature
     h_bond_infos = construct_hydrogen_bonding_info(datapoint)
     
-    if self.use_geom:
+    if use_geom:
       print("Using atom geometry features.")
       mol_geom = get_geom(datapoint,hydro=True)
     else:
