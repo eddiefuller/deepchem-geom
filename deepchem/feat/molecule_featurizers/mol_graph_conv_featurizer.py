@@ -181,6 +181,8 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     self.use_chirality = use_chirality
     self.use_geom = True
     
+    use_geom = True
+    
     print("Init use_geom=",use_geom)
 
   def _featurize(self, datapoint: RDKitMol, **kwargs) -> GraphData:
