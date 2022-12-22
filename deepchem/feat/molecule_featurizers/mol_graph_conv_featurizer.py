@@ -180,6 +180,8 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     self.use_partial_charge = use_partial_charge
     self.use_chirality = use_chirality
     self.use_geom = use_geom
+    
+    print("Init use_geom=",use_geom)
 
   def _featurize(self, datapoint: RDKitMol, **kwargs) -> GraphData:
     """Calculate molecule graph features from RDKit mol object.
