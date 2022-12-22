@@ -198,7 +198,7 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     graph: GraphData
       A molecule graph with some features.
     """
-    use_geom = True
+    use_geom = False
     
     assert datapoint.GetNumAtoms(
     ) > 1, "More than one atom should be present in the molecule for this featurizer to work."
