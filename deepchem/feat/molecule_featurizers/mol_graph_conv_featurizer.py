@@ -23,6 +23,8 @@ from deepchem.utils.molecule_feature_utils import get_atom_formal_charge_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_implicit_valence_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_explicit_valence_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_normal
+#from deepchem.utils.molecule_feature_utils import get_atom_curvature
+#from deepchem.utils.molecule_feature_utils import get_atom_angledefect
 from deepchem.utils.rdkit_utils import compute_all_pairs_shortest_path
 from deepchem.utils.rdkit_utils import compute_pairwise_ring_info
 
@@ -70,6 +72,7 @@ def _construct_atom_feature(atom: RDKitAtom,
   
   if use_geom:
     normal = get_atom_normal(atom,mol_geom)
+    print("Normal added: ",normal)
     atom_feat = np.concatenate([atom_feat,np.array(normal)])
   else:
     normal = [0,0,0] 
@@ -181,9 +184,6 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     self.use_partial_charge = use_partial_charge
     self.use_chirality = use_chirality
     
-    use_geom = True
-    
-    print("Init use_geom=",use_geom)
 
   def _featurize(self, datapoint: RDKitMol, **kwargs) -> GraphData:
     """Calculate molecule graph features from RDKit mol object.
@@ -198,7 +198,7 @@ class MolGraphConvFeaturizer(MolecularFeaturizer):
     graph: GraphData
       A molecule graph with some features.
     """
-    use_geom = False
+    use_geom = True
     
     assert datapoint.GetNumAtoms(
     ) > 1, "More than one atom should be present in the molecule for this featurizer to work."
