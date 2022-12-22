@@ -72,8 +72,8 @@ def _construct_atom_feature(atom: RDKitAtom,
   
   if use_geom:
     normal = get_atom_normal(atom,mol_geom)
-    if np.norm(normal)>0:
-      normal = normal/np.norm(normal)
+    if np.linalg.norm(normal)>0:
+      normal = normal/np.linalg.norm(normal)
     print("Normal added: ",normal)
     atom_feat = np.concatenate([atom_feat,np.array(normal)])
   else:
