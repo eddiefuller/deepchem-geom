@@ -75,6 +75,8 @@ def _construct_atom_feature(atom: RDKitAtom,
     if np.linalg.norm(normal)>0:
       normal = normal/np.linalg.norm(normal)
     print("Normal added: ",normal)
+    print("Curvature added: ",curvature)
+    print("Angle Defect added: ",ad)
     atom_feat = np.concatenate([atom_feat,curvature,ad,np.array(normal)])
   else:
     normal = [0,0,0] 
