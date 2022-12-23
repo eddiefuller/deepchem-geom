@@ -274,8 +274,8 @@ def get_atom_hydrogen_bonding_one_hot(
         one_hot[1] = 1.0
   return one_hot
 
-def get_atom_normal(atom: RDKitAtom, mol_geom: dict) -> List[float]:
-    """ get normal vector from atom geometry in molecule
+def get_atom_geom(atom: RDKitAtom, mol_geom: dict) -> List[float]:
+    """ get normal vector, curvature and angle defect from atom geometry in molecule
     Parameters
     ---------
     atom: rdkit.Chem.rdchem.Atom
@@ -288,11 +288,14 @@ def get_atom_normal(atom: RDKitAtom, mol_geom: dict) -> List[float]:
     """
     normal = [0.0, 0.0, 0.0]
     normals = mol_geom['N']
+    
     atom_idx = atom.GetIdx()
     for normal_tuple in normals:
         if normal_tuple[0] == atom_idx:
             normal = normal_tuple[1]
-    return normal
+            curvature = mol_geom['tcurve'][atom_idx][1]
+            ad = mol_geom['ad'][atom_idx][1]
+    return normal,curvature,ad
 
 def get_atom_curvature(atom: RDKitAtom, mol_geom: dict) -> List[float]:
     """ get curvature from atom geometry in molecule
