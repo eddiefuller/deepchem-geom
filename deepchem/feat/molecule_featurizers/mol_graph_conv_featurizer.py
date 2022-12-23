@@ -23,8 +23,8 @@ from deepchem.utils.molecule_feature_utils import get_atom_formal_charge_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_implicit_valence_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_explicit_valence_one_hot
 from deepchem.utils.molecule_feature_utils import get_atom_normal
-#from deepchem.utils.molecule_feature_utils import get_atom_curvature
-#from deepchem.utils.molecule_feature_utils import get_atom_angledefect
+from deepchem.utils.molecule_feature_utils import get_atom_curvature
+from deepchem.utils.molecule_feature_utils import get_atom_angledefect
 from deepchem.utils.rdkit_utils import compute_all_pairs_shortest_path
 from deepchem.utils.rdkit_utils import compute_pairwise_ring_info
 
@@ -71,14 +71,14 @@ def _construct_atom_feature(atom: RDKitAtom,
   
   
   if use_geom:
-    normal = get_atom_normal(atom,mol_geom)
+    normal,curvature,ad = get_atom_geom(atom,mol_geom)
     if np.linalg.norm(normal)>0:
       normal = normal/np.linalg.norm(normal)
     print("Normal added: ",normal)
-    atom_feat = np.concatenate([atom_feat,np.array(normal)])
+    atom_feat = np.concatenate([atom_feat,curvature,ad,np.array(normal)])
   else:
     normal = [0,0,0] 
-    atom_feat = np.concatenate([atom_feat,np.array(normal)])
+    atom_feat = np.concatenate([atom_feat,curvature,ad,np.array(normal)])
 
   if use_chirality:
     chirality = get_atom_chirality_one_hot(atom)
