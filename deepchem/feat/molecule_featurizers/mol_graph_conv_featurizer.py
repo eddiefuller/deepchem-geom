@@ -65,7 +65,7 @@ def _construct_atom_feature(atom: RDKitAtom,
   degree = get_atom_total_degree_one_hot(atom)
   total_num_Hs = get_atom_total_num_Hs_one_hot(atom)
   atom_feat = np.concatenate([
-      atom_type,
+      #atom_type,
       #formal_charge, hybridization, acceptor_donor, aromatic, degree,
       total_num_Hs
   ])
